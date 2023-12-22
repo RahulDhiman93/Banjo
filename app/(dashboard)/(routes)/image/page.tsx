@@ -194,7 +194,6 @@ const ImagePage = () => {
                                         Download
                                     </Button>
                                 </CardFooter>
-
                             </Card>
                         ))}
                     </div>
