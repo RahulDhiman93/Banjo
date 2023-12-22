@@ -42,7 +42,7 @@ import OpenAI from 'openai';
 
         return NextResponse.json(response.data);
     } catch (error) {
-        console.log("[CONVERSATION_ERROR]", error);
+        console.log("[IMAGE_ERROR]", error);
         return new NextResponse("Internal error", { status: 500})
     }
  }
