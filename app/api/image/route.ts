@@ -2,6 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 import OpenAI from 'openai';
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
+import { checkSubscription } from "@/lib/subscription";
 
  const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
@@ -36,7 +37,8 @@ import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
         }
 
         const freeTrial = await checkApiLimit();
-        if (!freeTrial) {
+        const isPro = await checkSubscription();
+        if (!freeTrial && !isPro) {
             return new NextResponse("Free trial has expired.", { status: 403 });
         }
 
@@ -46,7 +48,9 @@ import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
             size: resolution,
         })
 
-        await increaseApiLimit();
+        if (!isPro) {
+            await increaseApiLimit();
+        }
 
         return NextResponse.json(response.data);
     } catch (error) {
