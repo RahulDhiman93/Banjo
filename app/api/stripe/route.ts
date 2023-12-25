@@ -34,9 +34,9 @@ export async function GET() {
         const stripeSession = await stripe.checkout.sessions.create({
             success_url: settingsUrl,
             cancel_url: settingsUrl,
-            payment_method_types: ["paypal", "card"],
+            payment_method_types: ["card"],
             mode: "subscription",
-            billing_address_collection: "auto",
+            billing_address_collection: "required",
             customer_email: user.emailAddresses[0].emailAddress,
             line_items: [
                 {
@@ -46,7 +46,7 @@ export async function GET() {
                             name: "Banjo Pro",
                             description: "Unlimited AI Generations",
                         },
-                        unit_amount: 150000,
+                        unit_amount: 100000,
                         recurring: {
                             interval: "month"
                         }
@@ -62,7 +62,7 @@ export async function GET() {
         return new NextResponse(JSON.stringify({ url: stripeSession.url }));
 
     } catch (error) {
-        console.log(error);
+        console.log("[STRIPE_ERROR]", error);
         return new NextResponse("Internal error", { status: 500 })
     }
 }

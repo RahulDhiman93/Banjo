@@ -3,7 +3,6 @@ import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import prismadb from "@/lib/prismadb";
 import { stripe } from "@/lib/stripe";
-import { sign } from "crypto";
 
 export async function POST(req: Request) {
     const body = await req.text();
@@ -63,5 +62,5 @@ export async function POST(req: Request) {
         })
     }
 
-    return new NextResponse(null,{ status: 200 })
+    return new NextResponse(null,{ status: 200 });
 }
