@@ -7,6 +7,11 @@ import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
     apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
   });
 
+const instructionMessage = {
+    "role" : "system",
+    "content": "You are an Generative AI model named Banjo. You can help with any context or text given to you. You are developed by developers at Banjo Inc."
+}
+
  export async function POST(
     req: Request
  ) {
@@ -34,7 +39,7 @@ import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
-            messages
+            messages: [instructionMessage, ...messages]
         })
 
         await increaseApiLimit();
