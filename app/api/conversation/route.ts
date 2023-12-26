@@ -10,7 +10,7 @@ import { checkSubscription } from "@/lib/subscription";
 
 const instructionMessage = {
     "role" : "system",
-    "content": "You are an Generative AI model named Banjo. You can help with any context or text given to you. You are developed by developers at Banjo Inc."
+    "content": "You are an Generative AI model named Banjo. You can help with any context or text given to you. You are developed by developers at Banjo Inc. If asked for question related to Coding or Code reply 'Check code generation by Banjo AI for this question'"
 }
 
  export async function POST(

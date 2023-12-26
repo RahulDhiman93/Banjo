@@ -20,6 +20,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "axios": "^1.6.2",
     "class-variance-authority": "^0.7.0",
+    "clipboard": "^2.0.11",
     "clsx": "^2.0.0",
     "lucide-react": "^0.299.0",
     "next": "14.0.4",

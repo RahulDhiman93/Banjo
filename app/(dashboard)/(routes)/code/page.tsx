@@ -4,7 +4,7 @@ import axios from "axios";
 import * as z from "zod";
 import { Heading } from "@/components/heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { CodeIcon, MessageSquare } from "lucide-react";
+import { CodeIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
