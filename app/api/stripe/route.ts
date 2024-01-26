@@ -46,7 +46,7 @@ export async function GET() {
                             name: "Banjo Pro",
                             description: "Unlimited AI Generations",
                         },
-                        unit_amount: 59900,
+                        unit_amount: 4900,
                         recurring: {
                             interval: "month"
                         }
