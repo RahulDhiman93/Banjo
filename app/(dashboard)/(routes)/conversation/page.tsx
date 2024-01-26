@@ -91,6 +91,7 @@ const ConversationPage = () => {
                                                 disabled={isLoading}
                                                 placeholder="How do I calculate the radius of a circle?"
                                                 {...field}
+                                                autoComplete='off'
                                             />
                                         </FormControl>
                                     </FormItem>

@@ -91,6 +91,7 @@ const ImagePage = () => {
                                                 disabled={isLoading}
                                                 placeholder="A picture of a panda in new york city."
                                                 {...field}
+                                                autoComplete='off'
                                             />
                                         </FormControl>
                                     </FormItem>

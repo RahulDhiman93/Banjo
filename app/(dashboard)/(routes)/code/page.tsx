@@ -92,6 +92,7 @@ const CodePage = () => {
                                                 disabled={isLoading}
                                                 placeholder="Write optimized python code for fibonacci series"
                                                 {...field}
+                                                autoComplete='off'
                                             />
                                         </FormControl>
                                     </FormItem>

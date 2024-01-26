@@ -86,6 +86,7 @@ const MusicPage = () => {
                                                 disabled={isLoading}
                                                 placeholder="Piano solo"
                                                 {...field}
+                                                autoComplete='off'
                                             />
                                         </FormControl>
                                     </FormItem>

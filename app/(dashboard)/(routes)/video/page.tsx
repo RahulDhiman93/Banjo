@@ -85,6 +85,7 @@ const VideoPage = () => {
                                                 disabled={isLoading}
                                                 placeholder="An astronaut riding a horse"
                                                 {...field}
+                                                autoComplete='off'
                                             />
                                         </FormControl>
                                     </FormItem>
