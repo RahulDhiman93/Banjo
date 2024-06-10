@@ -40,7 +40,7 @@ const tools = [
         icon: CodeIcon,
         color: "text-green-500",
         bgColor: "bg-green-500/10",
-        href: "/video"
+        href: "/code"
     }
 ]
 
