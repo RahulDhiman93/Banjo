@@ -1,17 +1,9 @@
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
-import OpenAI from 'openai';
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit";
 import { checkSubscription } from "@/lib/subscription";
+import axios from 'axios';
 
- const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY // This is also the default, can be omitted
-  });
-
-const instructionMessage = {
-    "role" : "system",
-    "content": "You are an Generative AI model named Banjo. You can help with any context or text given to you. You are developed by developers at Banjo Inc."
-}
 
  export async function POST(
     req: Request
@@ -19,14 +11,10 @@ const instructionMessage = {
     try {
         const { userId } = auth();
         const body = await req.json();
-        const { messages } = body;
+        const { messages, modal } = body;
 
         if (!userId) {
             return new NextResponse("Unauthorized", { status: 401})
-        }
-
-        if (!openai.apiKey) {
-            return new NextResponse("OpenAI API key not configures", { status: 500})
         }
 
         if(!messages) {
@@ -39,16 +27,17 @@ const instructionMessage = {
             return new NextResponse("Free trial has expired.", { status: 403 });
         }
 
-        const response = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages: [instructionMessage, ...messages]
-        })
+        const apiResponse = await axios.post('http://192.9.144.136:8081/query', {
+            messages: messages,
+            model: modal
+        });
 
         if (!isPro) {
             await increaseApiLimit();
         }
-        
-        return NextResponse.json(response.choices[0].message);
+
+        const { data } = apiResponse.data;
+        return NextResponse.json(data);
     } catch (error) {
         console.log("[CONVERSATION_ERROR]", error);
         return new NextResponse("Internal error", { status: 500})
