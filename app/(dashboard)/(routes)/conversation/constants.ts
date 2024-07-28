@@ -19,5 +19,9 @@ export const modalOptions = [
     {
         value: "mistral",
         label: "Mistral"
+    },
+    {
+        value: "claude",
+        label: "Claude"
     }
 ]
