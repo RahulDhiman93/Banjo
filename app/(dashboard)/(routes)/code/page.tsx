@@ -21,7 +21,7 @@ import { useProModal } from "@/hooks/use-pro-modal";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import MarkdownRenderer from '@/components/markdownrenderer';
 
-const ConversationPage = () => {
+const CodePage = () => {
     const proModal = useProModal();
     const router = useRouter();
     const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
@@ -184,4 +184,4 @@ const ConversationPage = () => {
     );
 }
 
-export default ConversationPage;
+export default CodePage;
